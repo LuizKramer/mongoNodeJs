@@ -26,11 +26,40 @@ const sampleAccount = {
     last_updated: new Date()
 }
 
+const sampleAccounts = [
+    {
+        account_holder: "John Doe",
+        account_id: "123456781",
+        account_type: "Checking",
+        balance: 1000,
+        last_updated: new Date()
+    }, {
+        account_holder: "Jane Doe",
+        account_id: "987654321",
+        account_type: "Checking",
+        balance: 1000,
+        last_updated: new Date()
+    }
+]
+
+const documentsToFind = {balance:{ $gte: 1000 }};
+
+
 const main = async () => {
     try {
         await connectToDatabase();
-        let result = await accountsCollection.insertOne(sampleAccount);
-        console.log(`Inserted with the following id(s): ${result.insertedId}`);
+        // let result = await accountsCollection.insertOne(sampleAccount);
+        // console.log(`Inserted with the following id(s): ${result.insertedId}`);
+
+        // let result = await accountsCollection.insertMany(sampleAccounts);
+        // console.log(`Inserted with the following id(s): ${result.insertedIds}, ${result.insertedCount} documents inserted!`);
+
+        let result = await accountsCollection.find(documentsToFind);
+        let docCount = await accountsCollection.countDocuments(documentsToFind);
+
+        const arr = await result.toArray();
+        console.log(arr, `Found ${docCount} documents!`);
+
     } catch (error) {
         console.error(`Error connecting to the ${dbName} MongoDB database! ${error}`);
     }
