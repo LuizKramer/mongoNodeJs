@@ -1,0 +1,15 @@
+{
+  "name": "mongonodejs",
+  "version": "1.0.0",
+  "description": "Mongo db with nodeJs driver application with the objective of learning and apply the fundamental processes ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luiz Eduardo Caldas Kramer",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "mongodb": "^6.1.0"
+  }
+}
