@@ -44,6 +44,9 @@ const sampleAccounts = [
 
 const documentsToFind = {balance:{ $gte: 1000 }};
 
+const documentToUpdate = {account_id: "123456789"};
+const updatedDocument = { $inc: {balance: 2000}};
+
 
 const main = async () => {
     try {
@@ -54,11 +57,17 @@ const main = async () => {
         // let result = await accountsCollection.insertMany(sampleAccounts);
         // console.log(`Inserted with the following id(s): ${result.insertedIds}, ${result.insertedCount} documents inserted!`);
 
-        let result = await accountsCollection.find(documentsToFind);
-        let docCount = await accountsCollection.countDocuments(documentsToFind);
+        // let result = await accountsCollection.find(documentsToFind);
+        // let docCount = await accountsCollection.countDocuments(documentsToFind);
 
-        const arr = await result.toArray();
-        console.log(arr, `Found ${docCount} documents!`);
+        // const arr = await result.toArray();
+        // console.log(arr, `Found ${docCount} documents!`);
+
+        // const result = await accountsCollection.updateOne(documentToUpdate, updatedDocument);
+        // console.log(`${result.matchedCount} document(s) matched the query criteria.`);
+        // console.log(result.acknowledged);
+
+        
 
     } catch (error) {
         console.error(`Error connecting to the ${dbName} MongoDB database! ${error}`);
